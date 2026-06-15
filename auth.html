@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Masuk / Daftar — Asisten Akademik USM</title>
+  <meta name="description" content="Login atau daftar untuk mengakses Asisten Akademik Universitas Sapta Mandiri." />
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#2563EB" />
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/icon-32.png" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="auth.css" />
+
+  <!-- Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+<body class="auth-body">
+
+<!-- ── Auth Container ─────────────────────────────────── -->
+<div class="auth-layout">
+
+  <!-- Left Panel (Branding) -->
+  <aside class="auth-panel" aria-hidden="true">
+    <div class="auth-panel-content">
+      <a href="index.html" class="auth-logo">
+        <div class="logo-icon">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+            <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="white" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M2 17L12 22L22 17" stroke="white" stroke-width="2" stroke-linejoin="round"/>
+            <path d="M2 12L12 17L22 12" stroke="white" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <div class="logo-text">
+          <span class="logo-title">Asisten Akademik</span>
+          <span class="logo-sub">Universitas Sapta Mandiri</span>
+        </div>
+      </a>
+
+      <div class="auth-panel-hero">
+        <h2 class="auth-panel-title">Selamat Datang di<br/>Asisten Akademik AI</h2>
+        <p class="auth-panel-desc">Teknologi RAG terdepan untuk membantu mahasiswa mendapatkan informasi akademik secara cepat, akurat, dan tepat.</p>
+      </div>
+
+      <!-- Feature Points -->
+      <ul class="auth-features">
+        <li>
+          <div class="auth-feat-icon">✓</div>
+          <span>Jawaban akurat dari dokumen resmi universitas</span>
+        </li>
+        <li>
+          <div class="auth-feat-icon">✓</div>
+          <span>Riwayat percakapan tersimpan otomatis</span>
+        </li>
+        <li>
+          <div class="auth-feat-icon">✓</div>
+          <span>Tersedia 24/7, responsif di semua perangkat</span>
+        </li>
+        <li>
+          <div class="auth-feat-icon">✓</div>
+          <span>Data aman dengan enkripsi Supabase</span>
+        </li>
+      </ul>
+
+      <!-- Decorative orbs -->
+      <div class="panel-orb panel-orb-1" aria-hidden="true"></div>
+      <div class="panel-orb panel-orb-2" aria-hidden="true"></div>
+    </div>
+  </aside>
+
+  <!-- Right Panel (Form) -->
+  <main class="auth-form-section" role="main">
+
+    <!-- Top bar: back link + theme toggle -->
+    <div class="auth-topbar">
+      <a href="index.html" class="auth-back-link" aria-label="Kembali ke beranda">
+        <svg width="18" height="18" fill="none" viewBox="0 0 24 24">
+          <path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Beranda
+      </a>
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
+        <span class="theme-icon">🌙</span>
+      </button>
+    </div>
+
+    <div class="auth-form-wrapper">
+
+      <!-- ── LOGIN FORM ─────────────────────────── -->
+      <div id="loginSection" class="auth-section">
+        <div class="auth-header">
+          <h1 class="auth-title">Masuk ke Akun</h1>
+          <p class="auth-subtitle">Belum punya akun? <a href="#" class="auth-switch-link" id="goToRegister">Daftar gratis</a></p>
+        </div>
+
+        <form id="loginForm" class="auth-form" novalidate aria-label="Form Login">
+          <div class="form-group">
+            <label class="form-label" for="loginEmail">Alamat Email</label>
+            <input
+              type="email"
+              id="loginEmail"
+              name="email"
+              class="form-input"
+              placeholder="nama@email.com"
+              autocomplete="email"
+              required
+              aria-required="true"
+            />
+            <span class="form-error" id="loginEmailError" role="alert" aria-live="polite"></span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="loginPassword">
+              Password
+              <a href="#" class="forgot-link" id="goToReset" aria-label="Lupa password">Lupa password?</a>
+            </label>
+            <div class="input-password-wrap">
+              <input
+                type="password"
+                id="loginPassword"
+                name="password"
+                class="form-input"
+                placeholder="Masukkan password"
+                autocomplete="current-password"
+                required
+                aria-required="true"
+              />
+              <button type="button" class="toggle-password" aria-label="Tampilkan password" data-target="loginPassword">
+                <svg class="eye-icon" width="18" height="18" fill="none" viewBox="0 0 24 24">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="2"/>
+                  <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                </svg>
+              </button>
+            </div>
+            <span class="form-error" id="loginPasswordError" role="alert" aria-live="polite"></span>
+          </div>
+
+          <div class="form-check">
+            <label class="checkbox-label">
+              <input type="checkbox" id="rememberMe" class="checkbox-input" />
+              <span class="checkbox-custom" aria-hidden="true"></span>
+              <span class="checkbox-text">Ingat saya</span>
+            </label>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-full" id="loginBtn" aria-label="Masuk ke akun">
+            <span class="btn-text">Masuk</span>
+            <span class="btn-spinner spinner" style="display:none" aria-hidden="true"></span>
+          </button>
+
+          <div id="loginError" class="auth-alert auth-alert-error" role="alert" aria-live="polite" style="display:none"></div>
+        </form>
+      </div>
+
+      <!-- ── REGISTER FORM ──────────────────────── -->
+      <div id="registerSection" class="auth-section" style="display:none">
+        <div class="auth-header">
+          <h1 class="auth-title">Buat Akun Baru</h1>
+          <p class="auth-subtitle">Sudah punya akun? <a href="#" class="auth-switch-link" id="goToLogin">Masuk di sini</a></p>
+        </div>
+
+        <form id="registerForm" class="auth-form" novalidate aria-label="Form Registrasi">
+          <div class="form-group">
+            <label class="form-label" for="registerName">Nama Lengkap</label>
+            <input
+              type="text"
+              id="registerName"
+              name="fullName"
+              class="form-input"
+              placeholder="Nama lengkap Anda"
+              autocomplete="name"
+              required
+              aria-required="true"
+            />
+            <span class="form-error" id="registerNameError" role="alert" aria-live="polite"></span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="registerEmail">Alamat Email</label>
+            <input
+              type="email"
+              id="registerEmail"
+              name="email"
+              class="form-input"
+              placeholder="nama@email.com"
+              autocomplete="email"
+              required
+              aria-required="true"
+            />
+            <span class="form-error" id="registerEmailError" role="alert" aria-live="polite"></span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="registerPassword">Password</label>
+            <div class="input-password-wrap">
+              <input
+                type="password"
+                id="registerPassword"
+                name="password"
+                class="form-input"
+                placeholder="Minimal 8 karakter"
+                autocomplete="new-password"
+                required
+                aria-required="true"
+              />
+              <button type="button" class="toggle-password" aria-label="Tampilkan password" data-target="registerPassword">
+                <svg class="eye-icon" width="18" height="18" fill="none" viewBox="0 0 24 24">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="2"/>
+                  <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                </svg>
+              </button>
+            </div>
+            <div class="password-strength" id="passwordStrength" aria-live="polite">
+              <div class="strength-bar"><span id="strengthBar"></span></div>
+              <span id="strengthText" class="strength-text"></span>
+            </div>
+            <span class="form-error" id="registerPasswordError" role="alert" aria-live="polite"></span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="registerConfirm">Konfirmasi Password</label>
+            <div class="input-password-wrap">
+              <input
+                type="password"
+                id="registerConfirm"
+                name="confirm"
+                class="form-input"
+                placeholder="Ulangi password"
+                autocomplete="new-password"
+                required
+                aria-required="true"
+              />
+              <button type="button" class="toggle-password" aria-label="Tampilkan konfirmasi password" data-target="registerConfirm">
+                <svg class="eye-icon" width="18" height="18" fill="none" viewBox="0 0 24 24">
+                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" stroke="currentColor" stroke-width="2"/>
+                  <circle cx="12" cy="12" r="3" stroke="currentColor" stroke-width="2"/>
+                </svg>
+              </button>
+            </div>
+            <span class="form-error" id="registerConfirmError" role="alert" aria-live="polite"></span>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-full" id="registerBtn" aria-label="Buat akun baru">
+            <span class="btn-text">Buat Akun</span>
+            <span class="btn-spinner spinner" style="display:none" aria-hidden="true"></span>
+          </button>
+
+          <div id="registerError" class="auth-alert auth-alert-error" role="alert" aria-live="polite" style="display:none"></div>
+          <div id="registerSuccess" class="auth-alert auth-alert-success" role="alert" aria-live="polite" style="display:none"></div>
+        </form>
+      </div>
+
+      <!-- ── RESET PASSWORD FORM ───────────────── -->
+      <div id="resetSection" class="auth-section" style="display:none">
+        <div class="auth-header">
+          <h1 class="auth-title">Lupa Password?</h1>
+          <p class="auth-subtitle">Masukkan email Anda untuk menerima link reset password.<br/><a href="#" class="auth-switch-link" id="goToLoginFromReset">← Kembali masuk</a></p>
+        </div>
+
+        <form id="resetForm" class="auth-form" novalidate aria-label="Form Reset Password">
+          <div class="form-group">
+            <label class="form-label" for="resetEmail">Alamat Email</label>
+            <input
+              type="email"
+              id="resetEmail"
+              name="email"
+              class="form-input"
+              placeholder="nama@email.com"
+              autocomplete="email"
+              required
+              aria-required="true"
+            />
+            <span class="form-error" id="resetEmailError" role="alert" aria-live="polite"></span>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-full" id="resetBtn" aria-label="Kirim link reset password">
+            <span class="btn-text">Kirim Link Reset</span>
+            <span class="btn-spinner spinner" style="display:none" aria-hidden="true"></span>
+          </button>
+
+          <div id="resetError" class="auth-alert auth-alert-error" role="alert" aria-live="polite" style="display:none"></div>
+          <div id="resetSuccess" class="auth-alert auth-alert-success" role="alert" aria-live="polite" style="display:none"></div>
+        </form>
+      </div>
+
+    </div><!-- /.auth-form-wrapper -->
+  </main>
+</div>
+
+<!-- Toast Container -->
+<div id="toast-container" aria-live="polite" aria-atomic="false"></div>
+
+<!-- Scripts -->
+<script src="config.js"></script>
+<script type="module">
+  import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+  window._supabaseCreateClient = createClient;
+  const { default: authScript } = await import('./auth.js');
+</script>
+</body>
+</html>
