@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>Asisten Akademik — Universitas Sapta Mandiri</title>
+  <meta name="description" content="Asisten Akademik Universitas Sapta Mandiri berbasis Artificial Intelligence. Dapatkan informasi akademik secara cepat, akurat, dan real-time." />
+  <meta name="keywords" content="Universitas Sapta Mandiri, Asisten Akademik, AI, Chatbot, RAG, Akademik" />
+  <meta name="author" content="Universitas Sapta Mandiri" />
+  <meta name="theme-color" content="#2563EB" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Asisten Akademik Universitas Sapta Mandiri" />
+  <meta property="og:description" content="Asisten cerdas berbasis AI untuk informasi akademik real-time" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="icons/og-image.png" />
+
+  <!-- PWA -->
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" type="image/png" sizes="32x32" href="icons/icon-32.png" />
+  <link rel="apple-touch-icon" href="icons/icon-192.png" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <meta name="apple-mobile-web-app-title" content="Asisten USM" />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="landing.css" />
+
+  <!-- Preconnect -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════
+     NAVIGATION
+══════════════════════════════════════════════════ -->
+<nav class="navbar" id="navbar" role="navigation" aria-label="Navigasi utama">
+  <div class="navbar-inner">
+    <!-- Logo -->
+    <a href="index.html" class="navbar-logo" aria-label="Beranda Asisten Akademik USM">
+      <div class="logo-icon" aria-hidden="true">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="white" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M2 17L12 22L22 17" stroke="white" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M2 12L12 17L22 12" stroke="white" stroke-width="2" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="logo-text">
+        <span class="logo-title">Asisten Akademik</span>
+        <span class="logo-sub">Universitas Sapta Mandiri</span>
+      </div>
+    </a>
+
+    <!-- Desktop Links -->
+    <ul class="navbar-links" role="list">
+      <li><a href="#features" class="nav-link">Fitur</a></li>
+      <li><a href="#how-it-works" class="nav-link">Cara Kerja</a></li>
+      <li><a href="#faq" class="nav-link">FAQ</a></li>
+      <li><a href="#about" class="nav-link">Tentang</a></li>
+    </ul>
+
+    <!-- Actions -->
+    <div class="navbar-actions">
+      <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Ganti tema">
+        <span class="theme-icon" aria-hidden="true">🌙</span>
+      </button>
+      <a href="auth.html" class="btn btn-secondary btn-sm hide-mobile" id="loginBtn">Masuk</a>
+      <a href="auth.html?mode=register" class="btn btn-primary btn-sm hide-mobile" id="registerBtn">Daftar Gratis</a>
+      <button class="hamburger" id="hamburger" aria-label="Buka menu" aria-expanded="false" aria-controls="mobileMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobileMenu" role="menu" aria-hidden="true">
+    <ul>
+      <li><a href="#features" class="mobile-nav-link" role="menuitem">Fitur</a></li>
+      <li><a href="#how-it-works" class="mobile-nav-link" role="menuitem">Cara Kerja</a></li>
+      <li><a href="#faq" class="mobile-nav-link" role="menuitem">FAQ</a></li>
+      <li><a href="#about" class="mobile-nav-link" role="menuitem">Tentang</a></li>
+    </ul>
+    <div class="mobile-menu-actions">
+      <a href="auth.html" class="btn btn-secondary">Masuk</a>
+      <a href="auth.html?mode=register" class="btn btn-primary">Daftar Gratis</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════════════════
+     HERO SECTION
+══════════════════════════════════════════════════ -->
+<section class="hero" id="hero" aria-labelledby="heroTitle">
+  <!-- Animated Background -->
+  <div class="hero-bg" aria-hidden="true">
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-orb hero-orb-3"></div>
+    <div class="hero-grid"></div>
+  </div>
+
+  <div class="hero-content">
+    <!-- Badge -->
+    <div class="hero-badge animate-fadeUp">
+      <span class="badge-dot" aria-hidden="true"></span>
+      <span>Powered by AI & RAG Technology</span>
+    </div>
+
+    <!-- Heading -->
+    <h1 class="hero-title" id="heroTitle">
+      Asisten Akademik
+      <span class="hero-title-accent">Universitas Sapta Mandiri</span>
+    </h1>
+
+    <!-- Subtitle -->
+    <p class="hero-subtitle">
+      Asisten cerdas berbasis <strong>Artificial Intelligence</strong> yang membantu mahasiswa
+      memperoleh informasi akademik secara cepat, akurat, dan <em>real-time</em>.
+    </p>
+
+    <!-- CTA Buttons -->
+    <div class="hero-actions">
+      <a href="auth.html?mode=register" class="btn btn-primary btn-lg hero-cta-primary" id="heroCTAPrimary">
+        <svg width="20" height="20" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+          <path d="M8 12h8M12 8l4 4-4 4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Mulai Chat Sekarang
+      </a>
+      <a href="#features" class="btn btn-secondary btn-lg hero-cta-secondary" id="heroCTASecondary">
+        Pelajari Lebih Lanjut
+      </a>
+    </div>
+
+    <!-- Stats -->
+    <div class="hero-stats" role="list">
+      <div class="stat-item" role="listitem">
+        <span class="stat-number">RAG</span>
+        <span class="stat-label">Teknologi AI</span>
+      </div>
+      <div class="stat-divider" aria-hidden="true"></div>
+      <div class="stat-item" role="listitem">
+        <span class="stat-number">Real-time</span>
+        <span class="stat-label">Respons Cepat</span>
+      </div>
+      <div class="stat-divider" aria-hidden="true"></div>
+      <div class="stat-item" role="listitem">
+        <span class="stat-number">24/7</span>
+        <span class="stat-label">Selalu Tersedia</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Preview Card -->
+  <div class="hero-preview animate-float" aria-hidden="true">
+    <div class="preview-card">
+      <div class="preview-header">
+        <div class="preview-dots">
+          <span></span><span></span><span></span>
+        </div>
+        <span class="preview-title">Asisten Akademik</span>
+        <div class="preview-status">
+          <span class="status-dot"></span>Online
+        </div>
+      </div>
+      <div class="preview-chat">
+        <div class="preview-msg preview-msg-user">
+          Apa syarat untuk mengambil skripsi?
+        </div>
+        <div class="preview-msg preview-msg-ai">
+          <div class="ai-avatar">AI</div>
+          <div class="ai-text">
+            Syarat pengambilan skripsi di USM meliputi: telah menempuh minimal <strong>120 SKS</strong>,
+            IPK minimal <strong>2.50</strong>, dan telah lulus mata kuliah metodologi penelitian...
+            <div class="typing-dots">
+              <span></span><span></span><span></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     FEATURES SECTION
+══════════════════════════════════════════════════ -->
+<section class="section features-section" id="features" aria-labelledby="featuresTitle">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">Fitur Unggulan</span>
+      <h2 class="section-title" id="featuresTitle">
+        Semua Informasi Akademik<br/>dalam Satu Tempat
+      </h2>
+      <p class="section-desc">
+        Dapatkan jawaban tepat untuk berbagai kebutuhan akademik Anda
+        dengan teknologi AI yang canggih dan akurat.
+      </p>
+    </div>
+
+    <div class="features-grid">
+      <!-- Feature 1 -->
+      <article class="feature-card reveal card card-gradient" aria-label="Informasi Akademik">
+        <div class="feature-icon" aria-hidden="true" style="--icon-color: #2563EB">
+          <svg width="28" height="28" fill="none" viewBox="0 0 24 24">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3 class="feature-title">Informasi Akademik</h3>
+        <p class="feature-desc">Akses informasi lengkap seputar kebijakan, prosedur, dan tata tertib akademik universitas secara instan.</p>
+        <div class="feature-tag">Informasi Umum</div>
+      </article>
+
+      <!-- Feature 2 -->
+      <article class="feature-card reveal card card-gradient" aria-label="KRS dan KHS" style="--delay: 0.1s">
+        <div class="feature-icon" aria-hidden="true" style="--icon-color: #0EA5E9">
+          <svg width="28" height="28" fill="none" viewBox="0 0 24 24">
+            <path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3 class="feature-title">KRS &amp; KHS</h3>
+        <p class="feature-desc">Panduan pengisian KRS, informasi nilai KHS, syarat IPK, dan prosedur perubahan nilai secara detail.</p>
+        <div class="feature-tag">Nilai & Studi</div>
+      </article>
+
+      <!-- Feature 3 -->
+      <article class="feature-card reveal card card-gradient" aria-label="Skripsi dan Tugas Akhir" style="--delay: 0.2s">
+        <div class="feature-icon" aria-hidden="true" style="--icon-color: #7C3AED">
+          <svg width="28" height="28" fill="none" viewBox="0 0 24 24">
+            <path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3 class="feature-title">Skripsi &amp; Tugas Akhir</h3>
+        <p class="feature-desc">Syarat pengambilan skripsi, format penulisan, jadwal bimbingan, sidang, dan prosedur yudisium.</p>
+        <div class="feature-tag">Tugas Akhir</div>
+      </article>
+
+      <!-- Feature 4 -->
+      <article class="feature-card reveal card card-gradient" aria-label="Peraturan Akademik" style="--delay: 0.3s">
+        <div class="feature-icon" aria-hidden="true" style="--icon-color: #DC2626">
+          <svg width="28" height="28" fill="none" viewBox="0 0 24 24">
+            <path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3 class="feature-title">Peraturan Akademik</h3>
+        <p class="feature-desc">Informasi lengkap mengenai tata tertib, sanksi akademik, etika mahasiswa, dan kebijakan kampus.</p>
+        <div class="feature-tag">Regulasi</div>
+      </article>
+
+      <!-- Feature 5 -->
+      <article class="feature-card reveal card card-gradient" aria-label="Kalender Akademik" style="--delay: 0.4s">
+        <div class="feature-icon" aria-hidden="true" style="--icon-color: #D97706">
+          <svg width="28" height="28" fill="none" viewBox="0 0 24 24">
+            <path d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3 class="feature-title">Kalender Akademik</h3>
+        <p class="feature-desc">Jadwal kegiatan akademik, periode pendaftaran, ujian, libur, dan agenda penting semester.</p>
+        <div class="feature-tag">Jadwal</div>
+      </article>
+
+      <!-- Feature 6 -->
+      <article class="feature-card reveal card card-gradient" aria-label="Panduan Mahasiswa" style="--delay: 0.5s">
+        <div class="feature-icon" aria-hidden="true" style="--icon-color: #059669">
+          <svg width="28" height="28" fill="none" viewBox="0 0 24 24">
+            <path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3 class="feature-title">Panduan Mahasiswa</h3>
+        <p class="feature-desc">Petunjuk orientasi, layanan kemahasiswaan, beasiswa, UKM, dan berbagai fasilitas kampus.</p>
+        <div class="feature-tag">Panduan</div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     HOW IT WORKS
+══════════════════════════════════════════════════ -->
+<section class="section how-section" id="how-it-works" aria-labelledby="howTitle">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">Cara Kerja</span>
+      <h2 class="section-title" id="howTitle">Mudah Digunakan dalam 3 Langkah</h2>
+      <p class="section-desc">Sistem kami menggunakan teknologi RAG untuk memberikan jawaban yang akurat dan kontekstual</p>
+    </div>
+
+    <div class="steps-container">
+      <div class="step reveal" style="--delay:0s">
+        <div class="step-number" aria-hidden="true">01</div>
+        <div class="step-connector" aria-hidden="true"></div>
+        <div class="step-content">
+          <div class="step-icon" aria-hidden="true">
+            <svg width="32" height="32" fill="none" viewBox="0 0 24 24">
+              <path d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="step-title">Buat Akun</h3>
+          <p class="step-desc">Daftar menggunakan email kampus Anda. Proses registrasi cepat dan mudah hanya dalam beberapa detik.</p>
+        </div>
+      </div>
+
+      <div class="step reveal" style="--delay:0.15s">
+        <div class="step-number" aria-hidden="true">02</div>
+        <div class="step-connector" aria-hidden="true"></div>
+        <div class="step-content">
+          <div class="step-icon" aria-hidden="true">
+            <svg width="32" height="32" fill="none" viewBox="0 0 24 24">
+              <path d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="step-title">Ajukan Pertanyaan</h3>
+          <p class="step-desc">Ketik pertanyaan akademik Anda dalam bahasa natural. Asisten kami memahami konteks dan maksud Anda.</p>
+        </div>
+      </div>
+
+      <div class="step reveal" style="--delay:0.3s">
+        <div class="step-number" aria-hidden="true">03</div>
+        <div class="step-content">
+          <div class="step-icon" aria-hidden="true">
+            <svg width="32" height="32" fill="none" viewBox="0 0 24 24">
+              <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <h3 class="step-title">Dapatkan Jawaban AI</h3>
+          <p class="step-desc">Sistem RAG kami mencari dokumen akademik terpercaya dan menghasilkan jawaban yang akurat dan relevan.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Technology badges -->
+    <div class="tech-badges reveal">
+      <span class="chip">🤖 RAG Technology</span>
+      <span class="chip">🗄️ Supabase Database</span>
+      <span class="chip">⚡ n8n Automation</span>
+      <span class="chip">🔒 Secure Auth</span>
+      <span class="chip">📱 PWA Ready</span>
+      <span class="chip">🌙 Dark Mode</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     FAQ SECTION
+══════════════════════════════════════════════════ -->
+<section class="section faq-section" id="faq" aria-labelledby="faqTitle">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-tag">FAQ</span>
+      <h2 class="section-title" id="faqTitle">Pertanyaan yang Sering Diajukan</h2>
+      <p class="section-desc">Temukan jawaban untuk pertanyaan umum seputar sistem asisten akademik kami</p>
+    </div>
+
+    <div class="faq-list reveal" role="list">
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false" id="faq-q-1" aria-controls="faq-a-1">
+          <span>Apa itu Asisten Akademik berbasis AI?</span>
+          <svg class="faq-icon" width="20" height="20" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M19 9l-7 7-7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="faq-answer" id="faq-a-1" role="region" aria-labelledby="faq-q-1">
+          <p>Asisten Akademik adalah sistem chatbot cerdas yang menggunakan teknologi RAG (Retrieval-Augmented Generation) untuk memberikan jawaban akurat tentang informasi akademik Universitas Sapta Mandiri. Sistem ini mampu memahami pertanyaan dalam bahasa natural dan memberikan respons yang relevan berdasarkan dokumen akademik resmi.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false" id="faq-q-2" aria-controls="faq-a-2">
+          <span>Apakah data percakapan saya aman?</span>
+          <svg class="faq-icon" width="20" height="20" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M19 9l-7 7-7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="faq-answer" id="faq-a-2" role="region" aria-labelledby="faq-q-2">
+          <p>Ya, keamanan data adalah prioritas kami. Semua data percakapan disimpan di Supabase dengan enkripsi end-to-end. Setiap pengguna hanya dapat mengakses percakapan miliknya sendiri melalui sistem Row Level Security (RLS) Supabase.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false" id="faq-q-3" aria-controls="faq-a-3">
+          <span>Bagaimana cara mendaftar akun?</span>
+          <svg class="faq-icon" width="20" height="20" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M19 9l-7 7-7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="faq-answer" id="faq-a-3" role="region" aria-labelledby="faq-q-3">
+          <p>Klik tombol "Daftar Gratis" di halaman utama, masukkan nama lengkap, email, dan buat password. Anda akan menerima email konfirmasi. Setelah dikonfirmasi, Anda langsung bisa menggunakan semua fitur asisten akademik.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false" id="faq-q-4" aria-controls="faq-a-4">
+          <span>Apakah tersedia di HP dan tablet?</span>
+          <svg class="faq-icon" width="20" height="20" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M19 9l-7 7-7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="faq-answer" id="faq-a-4" role="region" aria-labelledby="faq-q-4">
+          <p>Tentu! Sistem ini dirancang dengan pendekatan Mobile First dan mendukung semua ukuran layar dari 320px hingga 1920px. Anda juga dapat menginstall sebagai aplikasi PWA di Android, iPhone, maupun desktop untuk pengalaman terbaik.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false" id="faq-q-5" aria-controls="faq-a-5">
+          <span>Apakah riwayat chat tersimpan?</span>
+          <svg class="faq-icon" width="20" height="20" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M19 9l-7 7-7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="faq-answer" id="faq-a-5" role="region" aria-labelledby="faq-q-5">
+          <p>Ya, semua percakapan Anda tersimpan otomatis di database Supabase. Anda dapat melihat riwayat chat, membuat sesi percakapan baru, menghapus percakapan tertentu, atau menghapus semua riwayat kapan saja dari halaman chatbot.</p>
+        </div>
+      </div>
+
+      <div class="faq-item" role="listitem">
+        <button class="faq-question" aria-expanded="false" id="faq-q-6" aria-controls="faq-a-6">
+          <span>Seberapa akurat jawaban yang diberikan?</span>
+          <svg class="faq-icon" width="20" height="20" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M19 9l-7 7-7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div class="faq-answer" id="faq-a-6" role="region" aria-labelledby="faq-q-6">
+          <p>Sistem RAG kami mengambil informasi langsung dari dokumen akademik resmi Universitas Sapta Mandiri. Teknologi ini memastikan jawaban berdasarkan sumber yang terverifikasi dan terpercaya. Namun untuk keputusan penting, selalu konfirmasi ke bagian akademik secara langsung.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     ABOUT / CTA SECTION
+══════════════════════════════════════════════════ -->
+<section class="section about-section" id="about" aria-labelledby="aboutTitle">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-content reveal">
+        <span class="section-tag">Tentang Sistem</span>
+        <h2 class="section-title" id="aboutTitle">Inovasi Digital untuk Kampus Modern</h2>
+        <p class="about-text">
+          Asisten Akademik Universitas Sapta Mandiri adalah proyek inovasi digital yang menggabungkan kecerdasan buatan dengan kebutuhan nyata mahasiswa. Dibangun dengan teknologi terkini: <strong>RAG (Retrieval-Augmented Generation)</strong>, <strong>Supabase</strong> sebagai backend, dan <strong>n8n</strong> untuk orkestrasi workflow AI.
+        </p>
+        <p class="about-text">
+          Sistem ini dirancang untuk mengurangi beban pertanyaan berulang kepada staf akademik, memberikan akses informasi 24/7, dan meningkatkan pengalaman belajar mahasiswa secara keseluruhan.
+        </p>
+        <div class="about-badges">
+          <div class="about-badge">
+            <svg width="20" height="20" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 13l4 4L19 7" stroke="var(--clr-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Berbasis dokumen resmi</span>
+          </div>
+          <div class="about-badge">
+            <svg width="20" height="20" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 13l4 4L19 7" stroke="var(--clr-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Respons real-time</span>
+          </div>
+          <div class="about-badge">
+            <svg width="20" height="20" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 13l4 4L19 7" stroke="var(--clr-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Aman &amp; terenkripsi</span>
+          </div>
+          <div class="about-badge">
+            <svg width="20" height="20" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M5 13l4 4L19 7" stroke="var(--clr-primary)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>PWA — Install di HP</span>
+          </div>
+        </div>
+        <a href="auth.html?mode=register" class="btn btn-primary btn-lg">Mulai Gunakan Sekarang</a>
+      </div>
+
+      <!-- CTA Card -->
+      <div class="cta-card reveal">
+        <div class="cta-card-inner">
+          <div class="cta-icon" aria-hidden="true">🎓</div>
+          <h3>Siap Memulai?</h3>
+          <p>Bergabunglah dan rasakan kemudahan mendapatkan informasi akademik dengan teknologi AI.</p>
+          <a href="auth.html?mode=register" class="btn btn-primary" id="ctaRegisterBtn">Buat Akun Gratis</a>
+          <div class="cta-divider">
+            <span>Sudah punya akun?</span>
+          </div>
+          <a href="auth.html" class="btn btn-secondary" id="ctaLoginBtn">Masuk ke Akun</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════
+     FOOTER
+══════════════════════════════════════════════════ -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-grid">
+      <!-- Brand -->
+      <div class="footer-brand">
+        <div class="navbar-logo">
+          <div class="logo-icon" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="white" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M2 17L12 22L22 17" stroke="white" stroke-width="2" stroke-linejoin="round"/>
+              <path d="M2 12L12 17L22 12" stroke="white" stroke-width="2" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="logo-text">
+            <span class="logo-title">Asisten Akademik</span>
+            <span class="logo-sub">Universitas Sapta Mandiri</span>
+          </div>
+        </div>
+        <p class="footer-desc">Asisten cerdas berbasis AI untuk mahasiswa Universitas Sapta Mandiri. Dapatkan informasi akademik secara cepat dan akurat.</p>
+        <div class="footer-powered">
+          <span class="chip">Powered by RAG + n8n + Supabase</span>
+        </div>
+      </div>
+
+      <!-- Links -->
+      <div class="footer-links-col">
+        <h4 class="footer-heading">Navigasi</h4>
+        <ul role="list">
+          <li><a href="#features">Fitur</a></li>
+          <li><a href="#how-it-works">Cara Kerja</a></li>
+          <li><a href="#faq">FAQ</a></li>
+          <li><a href="#about">Tentang</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links-col">
+        <h4 class="footer-heading">Akun</h4>
+        <ul role="list">
+          <li><a href="auth.html">Masuk</a></li>
+          <li><a href="auth.html?mode=register">Daftar</a></li>
+          <li><a href="auth.html?mode=reset">Lupa Password</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-links-col">
+        <h4 class="footer-heading">Informasi</h4>
+        <ul role="list">
+          <li><a href="#">Kebijakan Privasi</a></li>
+          <li><a href="#">Syarat Penggunaan</a></li>
+          <li><a href="#">Kontak</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p class="footer-copy">&copy; 2025 Universitas Sapta Mandiri. Seluruh hak dilindungi.</p>
+      <p class="footer-made">Dibuat dengan ❤️ untuk keperluan skripsi</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Toast Container -->
+<div id="toast-container" aria-live="polite" aria-atomic="false"></div>
+
+<!-- Scripts -->
+<script src="config.js"></script>
+<script src="script.js"></script>
+<script>
+  // Register Service Worker
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('/service-worker.js').catch(() => {});
+    });
+  }
+</script>
+</body>
+</html>
